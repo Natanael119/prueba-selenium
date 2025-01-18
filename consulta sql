@@ -1,0 +1,44 @@
+Tabla empresa.
+1. Mostar el campo de Nombre, Nit y Teléfono.
+
+SELECT nombre, nit, telefono
+FROM empresa
+
+
+2. Generar una sumatoria del campo transacciones.
+
+
+SELECT e.nombre, SUM(c.transaccion) AS total_transacciones
+FROM empresa e
+INNER JOIN Consumo c ON e.idempresa = c.idempresa
+WHERE c.transaccion > 1
+GROUP BY e.nombre;
+
+
+
+3. Mostrar el campo idproducto
+
+
+SELECT* idproducto
+FROM Consumo;
+
+4. Mostrar únicamente la sumatoria de transacciones mayores a 1.
+
+
+SELECT idempresa, SUM(CASE WHEN transaccion > 1 THEN transaccion ELSE 0 END) AS total_transacciones
+FROM Consumo
+GROUP BY idempresa;
+
+
+5. Mostrar el campo “fechaVencimineto”
+
+SELECT fechaVencimiento
+FROM Vencimiento;
+
+
+6. Mostrar únicamente los registros con “fechaVencimineto” mayores al día actual.
+SELECT *
+FROM Vencimiento
+WHERE fechaVencimiento > CURDATE();
+
+
